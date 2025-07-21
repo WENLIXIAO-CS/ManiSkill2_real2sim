@@ -93,6 +93,23 @@ class PDEEPosController(PDJointPosController):
             target_pose = sapien.Pose(action)
 
         return target_pose
+    
+    def clip_pose(self, pose: sapien.Pose) -> sapien.Pose:
+        # pos_lower = np.array([0.1, -0.27, 0.0])
+        # pos_upper = np.array([0.3, 0.11, 0.24])
+        pos_lower = np.array([-np.inf, -np.inf, 0.0])
+        pos_upper = np.array([np.inf, np.inf, 0.24])
+        rot_lower = np.array([np.pi - 0.1, -0.1, -0.1])
+        rot_upper = np.array([np.pi + 0.1, 0.1, 0.1])
+        wxyz = pose.q
+        # convert to euler xyz
+        # import ipdb; ipdb.set_trace()
+        # print("wxyz", wxyz)
+        euler = Rotation.from_quat(wxyz, scalar_first=True).as_euler('xyz')
+        
+        wxyz = Rotation.from_euler('xyz', euler).as_quat(scalar_first=True)
+        pose = sapien.Pose(p=np.clip(pose.p, pos_lower, pos_upper), q=wxyz)
+        return pose
 
     def set_action(self, action: np.ndarray):
         action = self._preprocess_action(action)
@@ -111,6 +128,7 @@ class PDEEPosController(PDJointPosController):
             prev_ee_pose_at_base = self.ee_pose_at_base
 
         self._target_pose = self.compute_target_pose(prev_ee_pose_at_base, action)
+        self._target_pose = self.clip_pose(self._target_pose)
         self._target_qpos = self.compute_ik(self._target_pose)
         if self._target_qpos is None:
             self._target_qpos = self._start_qpos

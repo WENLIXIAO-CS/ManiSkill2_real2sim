@@ -237,7 +237,7 @@ class PutOnBridgeInSceneEnv(PutOnInSceneEnv, CustomBridgeObjectsInSceneEnv):
             self.episode_objs.append(obj)
 
 
-@register_env("PutSpoonOnTableClothInScene-v0", max_episode_steps=60)
+@register_env("PutSpoonOnTableClothInScene-v0", max_episode_steps=200)
 class PutSpoonOnTableClothInScene(PutOnBridgeInSceneEnv):
     def __init__(
         self,
@@ -281,7 +281,7 @@ class PutSpoonOnTableClothInScene(PutOnBridgeInSceneEnv):
         return "put the spoon on the towel"
 
 
-@register_env("PutCarrotOnPlateInScene-v0", max_episode_steps=60)
+@register_env("PutCarrotOnPlateInScene-v0", max_episode_steps=200)
 class PutCarrotOnPlateInScene(PutOnBridgeInSceneEnv):
     def __init__(self, **kwargs):
         source_obj_name = "bridge_carrot_generated_modified"
@@ -360,7 +360,7 @@ class StackGreenCubeOnYellowCubeInScene(PutOnBridgeInSceneEnv):
         return "stack the green block on the yellow block"
 
 
-@register_env("StackGreenCubeOnYellowCubeBakedTexInScene-v0", max_episode_steps=60)
+@register_env("StackGreenCubeOnYellowCubeBakedTexInScene-v0", max_episode_steps=300)
 class StackGreenCubeOnYellowCubeBakedTexInScene(StackGreenCubeOnYellowCubeInScene):
     DEFAULT_MODEL_JSON = "info_bridge_custom_baked_tex_v0.json"
 
