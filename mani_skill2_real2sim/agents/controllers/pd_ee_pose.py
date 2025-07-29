@@ -97,8 +97,8 @@ class PDEEPosController(PDJointPosController):
     def clip_pose(self, pose: sapien.Pose) -> sapien.Pose:
         # pos_lower = np.array([0.1, -0.27, 0.0])
         # pos_upper = np.array([0.3, 0.11, 0.24])
-        pos_lower = np.array([-np.inf, -np.inf, 0.0])
-        pos_upper = np.array([np.inf, np.inf, 0.24])
+        pos_lower = np.array([-np.inf, -np.inf, -np.inf])
+        pos_upper = np.array([np.inf, np.inf, np.inf])
         rot_lower = np.array([np.pi - 0.1, -0.1, -0.1])
         rot_upper = np.array([np.pi + 0.1, 0.1, 0.1])
         wxyz = pose.q
