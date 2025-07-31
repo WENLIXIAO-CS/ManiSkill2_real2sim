@@ -95,12 +95,22 @@ class PDEEPosController(PDJointPosController):
         return target_pose
     
     def clip_pose(self, pose: sapien.Pose) -> sapien.Pose:
-        # pos_lower = np.array([0.1, -0.27, 0.0])
-        # pos_upper = np.array([0.3, 0.11, 0.24])
-        pos_lower = np.array([-np.inf, -np.inf, -np.inf])
-        pos_upper = np.array([np.inf, np.inf, np.inf])
-        rot_lower = np.array([np.pi - 0.1, -0.1, -0.1])
-        rot_upper = np.array([np.pi + 0.1, 0.1, 0.1])
+        from .controller_config_store import controller_config_store
+        
+        # Get pose clipping bounds from global config
+        bounds = controller_config_store.get_pose_clip_bounds()
+        pos_lower = bounds['pos_lower']
+        pos_upper = bounds['pos_upper']
+        rot_lower = bounds['rot_lower']
+        rot_upper = bounds['rot_upper']
+        
+        # Debug: Print config on first use
+        if not hasattr(self, '_config_printed'):
+            config = controller_config_store.get_config()
+            print(f"[PDEEPosController] Using controller config: {config}")
+            print(f"[PDEEPosController] Pose clipping bounds: pos_lower={pos_lower}, pos_upper={pos_upper}")
+            self._config_printed = True
+        
         wxyz = pose.q
         # convert to euler xyz
         # import ipdb; ipdb.set_trace()
