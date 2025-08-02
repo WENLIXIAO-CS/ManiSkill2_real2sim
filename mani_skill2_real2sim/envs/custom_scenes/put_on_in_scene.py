@@ -237,7 +237,7 @@ class PutOnBridgeInSceneEnv(PutOnInSceneEnv, CustomBridgeObjectsInSceneEnv):
             self.episode_objs.append(obj)
 
 
-@register_env("PutSpoonOnTableClothInScene-v0", max_episode_steps=200)
+@register_env("PutSpoonOnTableClothInScene-v0", max_episode_steps=250)
 class PutSpoonOnTableClothInScene(PutOnBridgeInSceneEnv):
     def __init__(
         self,
