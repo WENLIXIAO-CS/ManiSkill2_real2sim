@@ -178,9 +178,11 @@ class PlaceObjectInClosedDrawerInSceneEnv(OpenDrawerInSceneEnv):
         rgb_overlay_paths = [
             str(ASSET_DIR / f"real_inpainting/open_drawer_{i}.png") for i in overlay_ids
         ]
-        robot_init_xs = [0.644, 0.652, 0.665]
-        robot_init_ys = [-0.179, 0.009, 0.224]
-        robot_init_rotzs = [-0.03, 0, 0]
+        # robot_init_xs = [0.644, 0.652, 0.665]
+        # robot_init_ys = [-0.179, 0.009, 0.224]
+        robot_init_xs = [0.6, 0.6, 0.6]
+        robot_init_ys = [-0.15, -0.15, -0.15]
+        robot_init_rotzs = [-0.15, -0.15, -0.15]
         idx_chosen = self._episode_rng.choice(len(overlay_ids))
 
         options["robot_init_options"] = {

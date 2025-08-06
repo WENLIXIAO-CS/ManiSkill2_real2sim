@@ -302,7 +302,7 @@ class CustomSceneEnv(BaseEnv):
             robot_init_height = self.robot_init_options["init_height"]
         if self.robot_init_options.get("init_rot_quat", None) is not None:
             robot_init_rot_quat = self.robot_init_options["init_rot_quat"]
-        
+
         if (robot_init_xy := self.robot_init_options.get("init_xy", None)) is not None:
             robot_init_xyz = [robot_init_xy[0], robot_init_xy[1], robot_init_height]
         else:

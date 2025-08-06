@@ -194,17 +194,30 @@ class OpenDrawerInSceneEnv(CustomSceneEnv):
         rgb_overlay_paths = [
             str(ASSET_DIR / f"real_inpainting/open_drawer_{i}.png") for i in overlay_ids
         ]
-        robot_init_xs = [0.644, 0.765, 0.889, 0.652, 0.752, 0.851, 0.665, 0.765, 0.865]
+        # robot_init_xs = [0.644, 0.765, 0.889, 0.652, 0.752, 0.851, 0.665, 0.765, 0.865]
+        # robot_init_ys = [
+        #     -0.179,
+        #     -0.182,
+        #     -0.203,
+        #     0.009,
+        #     0.009,
+        #     0.035,
+        #     0.224,
+        #     0.222,
+        #     0.222,
+        # ]
+        # robot_init_rotzs = [-0.03, -0.02, -0.06, 0, 0, 0, 0, -0.025, -0.025]
+        robot_init_xs = [0.644, 0.665, 0.665, 0.652, 0.652, 0.651, 0.665, 0.665, 0.565]
         robot_init_ys = [
             -0.179,
             -0.182,
-            -0.203,
+            -0.153,
             0.009,
             0.009,
             0.035,
-            0.224,
-            0.222,
-            0.222,
+            0.04,
+            0.052,
+            0.052,
         ]
         robot_init_rotzs = [-0.03, -0.02, -0.06, 0, 0, 0, 0, -0.025, -0.025]
         idx_chosen = self._episode_rng.choice(len(overlay_ids))
